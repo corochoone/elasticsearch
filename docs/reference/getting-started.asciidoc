@@ -671,7 +671,7 @@ It is important to understand that once you get your search results back, Elasti
 
 Elasticsearch provides a JSON-style domain-specific language that you can use to execute queries. This is referred to as the <<query-dsl,Query DSL>>. The query language is quite comprehensive and can be intimidating at first glance but the best way to actually learn it is to start with a few basic examples.
 
-Going back to our last example, we executed this query:
+Going back to our last example, we executed this request:
 
 [source,sh]
 --------------------------------------------------
@@ -680,7 +680,7 @@ Going back to our last example, we executed this query:
 }
 --------------------------------------------------
 
-Dissecting the above, the `query` part tells us what our query definition is and the `match_all` part is simply the type of query that we want to run. The `match_all` query is simply a search for all documents in the specified index.
+Dissecting the above, the `query` part tells us what our query definition is and the `match_all` part is simply the type of query that we want to run. The `match_all` query type is simply a search for all documents in the specified index.
 
 In addition to the `query` parameter, we also can pass other parameters to influence the search results. For example, the following does a `match_all` and returns only the first document:
 
