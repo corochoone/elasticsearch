@@ -157,9 +157,9 @@ with care. If used incorrectly, they can result in loss of data.
 [[operation-type]]
 === Operation Type
 
-The index operation also accepts an `op_type` that can be used to force
+The index operation also accepts an `op_type` parameter, that can be used to force
 a `create` operation, allowing for "put-if-absent" behavior. When
-`create` is used, the index operation will fail if a document by that id
+`create` value is used, the index operation will fail if a document with specified id
 already exists in the index.
 
 Here is an example of using the `op_type` parameter:
@@ -173,7 +173,7 @@ $ curl -XPUT 'http://localhost:9200/twitter/tweet/1?op_type=create' -d '{
 }'
 --------------------------------------------------
 
-Another option to specify `create` is to use the following uri:
+Another way to specify `create` is to use the following URI:
 
 [source,js]
 --------------------------------------------------
@@ -188,8 +188,8 @@ $ curl -XPUT 'http://localhost:9200/twitter/tweet/1/_create' -d '{
 === Automatic ID Generation
 
 The index operation can be executed without specifying the id. In such a
-case, an id will be generated automatically. In addition, the `op_type`
-will automatically be set to `create`. Here is an example (note the
+case, an id will be generated automatically. In addition, the `op_type` parameter
+will automatically be set to `create` value. Here is an example (note the
 *POST* used instead of *PUT*):
 
 [source,js]
@@ -232,8 +232,8 @@ $ curl -XPOST 'http://localhost:9200/twitter/tweet?routing=kimchy' -d '{
 }'
 --------------------------------------------------
 
-In the example above, the "tweet" document is routed to a shard based on
-the `routing` parameter provided: "kimchy".
+In the example above, the "tweet" document is routed to a shard specified
+by `routing` parameter with "kimchy" value.
 
 When setting up explicit mapping, the `_routing` field can be optionally
 used to direct the index operation to extract the routing value from the
@@ -264,8 +264,8 @@ specified using the `routing` parameter.
 [[index-timestamp]]
 === Timestamp
 
-A document can be indexed with a `timestamp` associated with it. The
-`timestamp` value of a document can be set using the `timestamp`
+A document can be indexed with a timestamp associated with it. The
+timestamp value of a document can be set using the `timestamp`
 parameter. For example:
 
 [source,js]
@@ -276,8 +276,8 @@ $ curl -XPUT localhost:9200/twitter/tweet/1?timestamp=2009-11-15T14%3A12%3A12 -d
 }'
 --------------------------------------------------
 
-If the `timestamp` value is not provided externally or in the `_source`,
-the `timestamp` will be automatically set to the date the document was
+If the `timestamp` parameter value is not provided externally or in the `_source`,
+the timestamp will be automatically set to the date the document was
 processed by the indexing chain. More information can be found on the
 <<mapping-timestamp-field,_timestamp mapping
 page>>.
@@ -286,11 +286,12 @@ page>>.
 [[index-ttl]]
 === TTL
 
-A document can be indexed with a `ttl` (time to live) associated with
-it. Expired documents will be expunged automatically. The expiration
-date that will be set for a document with a provided `ttl` is relative
-to the `timestamp` of the document, meaning it can be based on the time
-of indexing or on any time provided. The provided `ttl` must be strictly
+A document can be indexed with a ttl (time to live) associated with
+it, using `ttl` parameter. Expired documents will be expunged from
+index automatically. The expiration date that will be set for a
+document with a provided `ttl` is relative to the `timestamp`
+of the document, meaning it can be based on the time
+of indexing or on any time provided. The provided `ttl` value must be strictly
 positive and can be a number (in milliseconds) or any valid time value
 as shown in the following examples:
 
